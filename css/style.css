@@ -793,6 +793,19 @@ input, textarea { font: inherit; }
 .assembly--static .assembly__sticky { position: static; height: 72vh; }
 .assembly--static .assembly__frame:last-child { opacity: 1; }
 
+/* On narrow/portrait screens the 16:9 frame would be cropped to a sliver by
+   cover — show the whole room instead, letterboxed on the dark backdrop. */
+@media (max-width: 900px) {
+  .assembly__sticky { background: var(--dark); }
+  .assembly__frame {
+    object-fit: contain;
+    object-position: center 38%;
+  }
+  .assembly__scrim {
+    background: linear-gradient(0deg, rgba(20, 16, 10, 0.55), transparent 34%);
+  }
+}
+
 @media (max-width: 620px) {
   .assembly { height: 360vh; }
   .assembly__overlay { bottom: 30px; }
