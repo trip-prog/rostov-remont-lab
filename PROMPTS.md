@@ -71,6 +71,25 @@ a few traces of construction work. Same room geometry, same camera angle, same
 window position, same daylight. Do not move the camera.
 ```
 
+## СТАДИЯ 0 — коробка от застройщика (edit к стадии 1)
+
+Самый первый кадр: газоблочные стены без штукатурки, голый бетонный потолок с проводкой, стяжка с трубами — как выглядит квартира в новостройке при приёмке.
+
+```
+Edit this photo. Transform this room into the same room at the very first stage of
+renovation, as handed over by the developer in a new building: walls made of bare
+white aerated concrete blocks (autoclaved gas blocks) with visible grey mortar
+joints between blocks, no plaster at all; raw grey concrete ceiling slab with
+exposed black electrical cables in corrugated conduit stapled to the ceiling and
+one temporary hanging work bulb; rough dusty concrete screed floor with thin red
+and blue plumbing pipes running along the floor near the wall; bare window frame
+without curtains; remove the wooden shelving frame, leave a bare concrete niche
+instead. Same room geometry, same camera angle, same window position, same
+daylight. Do not move the camera.
+```
+
+Если блоки получаются слишком аккуратными, добавить в конец: `make it look like a real construction site photo, slightly dusty and imperfect`. Файл: `stage-0.jpg`.
+
 ---
 
 ## Что потом
