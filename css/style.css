@@ -722,7 +722,8 @@ input, textarea { font: inherit; }
    while scroll progress crossfades the stage frames. */
 .assembly {
   position: relative;
-  height: 440vh;
+  /* Six stages = five equal transitions; keep the same scrolling pace per transition. */
+  height: 520vh;
   background: var(--dark);
 }
 .assembly__sticky {
@@ -807,7 +808,7 @@ input, textarea { font: inherit; }
 }
 
 @media (max-width: 620px) {
-  .assembly { height: 360vh; }
+  .assembly { height: 440vh; }
   .assembly__overlay { bottom: 30px; }
   .assembly__dots span { width: 26px; }
 }
