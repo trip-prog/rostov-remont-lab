@@ -384,43 +384,9 @@ ${pageHero({
   ],
 })}
 
-<!-- ===== КАЛЬКУЛЯТОР ===== -->
-<section class="section">
-  <div class="container container--narrow">
-    ${sectionHead({
-      eyebrow: "Прикидка бюджета",
-      title: "Предварительный расчёт",
-      note: "Умножаем площадь на базовую ставку выбранного формата. Это ориентир, а не смета: точную цену считаем на объекте.",
-    })}
-    <div class="calc" data-reveal>
-      <div class="calc__controls">
-        <label class="field">
-          <span>Площадь, м²</span>
-          <input type="number" id="calc-area" min="10" max="400" step="1" value="55" inputmode="numeric">
-        </label>
-        <label class="field">
-          <span>Формат ремонта</span>
-          <select id="calc-type">
-            <option value="8500">Косметический — 8 500 ₽/м²</option>
-            <option value="12000">Новостройка под ключ — 12 000 ₽/м²</option>
-            <option value="14500" selected>Капитальный — 14 500 ₽/м²</option>
-            <option value="24000">По дизайн-проекту — 24 000 ₽/м²</option>
-          </select>
-        </label>
-      </div>
-      <div class="calc__result">
-        <span class="calc__label">Работы обойдутся примерно в</span>
-        <output class="calc__value" id="calc-out" for="calc-area calc-type">797 500 ₽</output>
-        <span class="calc__hint">Материалы считаются отдельно и обычно добавляют 40–60% к этой сумме.</span>
-        <a href="#zayavka" class="btn btn--gold btn--full">Получить точную смету</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 ${tables}
 
-<section class="section">
+<section class="section section--alt">
   <div class="container container--narrow">
     ${sectionHead({ eyebrow: "Вопросы", title: "О деньгах — честно" })}
     ${faqBlock([

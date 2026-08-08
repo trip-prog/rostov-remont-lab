@@ -216,41 +216,6 @@ if (grid) {
   );
 }
 
-/* ===== Калькулятор предварительной стоимости ===== */
-const calcArea = $("#calc-area");
-const calcType = $("#calc-type");
-const calcOut = $("#calc-out");
-
-if (calcArea && calcType && calcOut) {
-  const MIN = 10;
-  const MAX = 400;
-  const format = (n) => new Intl.NumberFormat("ru-RU").format(n) + " ₽";
-  const clamp = (n) => Math.min(MAX, Math.max(MIN, n));
-
-  const recalc = () => {
-    const raw = Number(calcArea.value);
-    const rate = Number(calcType.value) || 0;
-    if (!raw) {
-      calcOut.textContent = "—";
-      return;
-    }
-    calcOut.textContent = format(Math.round((clamp(raw) * rate) / 500) * 500);
-  };
-
-  calcArea.addEventListener("input", recalc);
-  calcType.addEventListener("change", recalc);
-
-  // Приводим поле к допустимому диапазону только после ввода, иначе
-  // промежуточное «1» на пути к «120» превращалось бы в «10».
-  calcArea.addEventListener("change", () => {
-    const raw = Number(calcArea.value);
-    if (raw) calcArea.value = clamp(raw);
-    recalc();
-  });
-
-  recalc();
-}
-
 /* ===== Сборка комнаты при прокрутке (только главная) ===== */
 const assembly = $("#assembly");
 if (assembly) {
