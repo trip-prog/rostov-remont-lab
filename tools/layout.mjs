@@ -12,6 +12,17 @@ export const ASSET_VERSION = "3";
 export const icon = (name, cls = "") =>
   `<svg${cls ? ` class="${cls}"` : ""} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name] || ""}</svg>`;
 
+/**
+ * Ссылка от корня сайта → ссылка относительно текущей страницы.
+ * Глубина всего две: корень (base "") и папка услуг (base "../"),
+ * поэтому достаточно срезать общий префикс вместо разбора пути.
+ */
+function href(target, base) {
+  const currentDir = base === "" ? "" : "uslugi/";
+  if (currentDir && target.startsWith(currentDir)) return target.slice(currentDir.length);
+  return base + target;
+}
+
 const logoMark = `<svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="var(--gold)"/><path d="M9 22V13l7-5 7 5v9" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 const logo = (base, modifier = "") =>
@@ -51,7 +62,7 @@ function header(ctx) {
     .map((l) => {
       const id = l.href.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "") || "index";
       const is = active === id || (active === "uslugi-item" && id === "uslugi/");
-      return `<a href="${base}${l.href}" class="nav__link${is ? " is-active" : ""}"${is ? ' aria-current="page"' : ""}>${l.label}</a>`;
+      return `<a href="${href(l.href, base)}" class="nav__link${is ? " is-active" : ""}"${is ? ' aria-current="page"' : ""}>${l.label}</a>`;
     })
     .join("\n        ");
 
@@ -82,7 +93,7 @@ function drawer(ctx) {
     .map((l) => {
       const id = l.href.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "") || "index";
       const is = active === id || (active === "uslugi-item" && id === "uslugi/");
-      return `<a href="${base}${l.href}" class="drawer__section-link${is ? " is-active" : ""}">${l.label}${icon("arrow")}</a>`;
+      return `<a href="${href(l.href, base)}" class="drawer__section-link${is ? " is-active" : ""}">${l.label}${icon("arrow")}</a>`;
     })
     .join("\n          ");
 
@@ -92,7 +103,7 @@ function drawer(ctx) {
         .filter((s) => s.category === cat.id)
         .map((s) => {
           const is = active === "uslugi-item" && ctx.slug === s.slug;
-          return `<li><a href="${base}uslugi/${s.slug}.html" class="drawer__service${is ? " is-active" : ""}">
+          return `<li><a href="${href(`uslugi/${s.slug}.html`, base)}" class="drawer__service${is ? " is-active" : ""}">
                 <span class="drawer__service-icon">${icon(s.icon)}</span>
                 <span class="drawer__service-text">
                   <b>${s.menu}</b>
@@ -148,7 +159,7 @@ function footer(ctx) {
     .map((cat) => {
       const items = services
         .filter((s) => s.category === cat.id)
-        .map((s) => `<a href="${base}uslugi/${s.slug}.html">${s.menu}</a>`)
+        .map((s) => `<a href="${href(`uslugi/${s.slug}.html`, base)}">${s.menu}</a>`)
         .join("\n        ");
       return `<div class="footer__col">
         <h3>${cat.title}</h3>
@@ -158,7 +169,7 @@ function footer(ctx) {
     .join("\n      ");
 
   const pages = mainNav
-    .map((l) => `<a href="${base}${l.href}">${l.label}</a>`)
+    .map((l) => `<a href="${href(l.href, base)}">${l.label}</a>`)
     .join("\n        ");
 
   return `<footer class="footer">
